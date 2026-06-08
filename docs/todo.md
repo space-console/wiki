@@ -12,8 +12,8 @@ code). An agent or maintainer with admin should work through these.
 
 Apply to **each** repo: `game-launcher-web`, `game-controller`, `wiki`.
 
-- [ ] **Pages source** → Settings ▸ Pages ▸ *Deploy from a branch* → `gh-pages` / `(root)`.
-      (The first `pages.yml` run creates the `gh-pages` branch.)
+- [x] **Pages source** → `gh-pages` / `(root)`. **Done** for all three repos
+      (set via `gh api -X PUT/POST repos/<repo>/pages`, `build_type=legacy`).
 - [ ] **Branch protection** on `main` → require the **build** and **lint** status
       checks to pass before merging; require a PR (no direct pushes).
 - [ ] **Allow auto-merge** → Settings ▸ General ▸ Pull Requests. Then PRs can use
@@ -44,9 +44,9 @@ gh api -X PUT repos/$R/branches/main/protection \
 
 | Repo | Pipeline files | Pages source set | Branch protection | Auto-merge | Notes |
 | --- | --- | --- | --- | --- | --- |
-| game-launcher-web | ✅ `pages.yml`, stamp, lint | ☐ | ☐ | ☐ | docs migrated to wiki |
-| game-controller | ✅ `pages.yml`, stamp, lint | ☐ | ☐ | ☐ | placeholder app |
-| wiki | ✅ `pages.yml`, markdownlint | ☐ | ☐ | ☐ | docs hub |
+| game-launcher-web | ✅ `pages.yml`, stamp, lint | ✅ | ☐ | ☐ | docs migrated to wiki |
+| game-controller | ✅ `pages.yml`, stamp, lint | ✅ | ☐ | ☐ | placeholder app |
+| wiki | ✅ `pages.yml`, markdownlint | ✅ | ☐ | ☐ | docs hub |
 
 ## Product backlog
 
