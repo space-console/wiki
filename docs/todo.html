@@ -2,9 +2,9 @@
 <html>
   <head>
     <meta charset="utf-8">
-      <title>TODO / Backlog | Space Console Wiki </title>
+      <title>TODO / Backlog | Space Console &#183; Mission Control </title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta name="title" content="TODO / Backlog | Space Console Wiki ">
+      <meta name="title" content="TODO / Backlog | Space Console &#183; Mission Control ">
       
       
       <link rel="icon" href="../favicon.ico">
@@ -39,13 +39,13 @@
 
   </head>
 
-  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+  <body class="tex2jax_ignore" data-layout="landing" data-yaml-mime="">
     <header class="bg-body border-bottom">
       <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
         <div class="container-xxl flex-nowrap">
           <a class="navbar-brand" href="../index.html">
-            <img id="logo" class="svg" src="../logo.svg" alt="Space Console Wiki">
-            Space Console Wiki
+            <img id="logo" class="svg" src="../logo.svg" alt="SPACE CONSOLE">
+            SPACE CONSOLE
           </a>
           <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
             <i class="bi bi-three-dots"></i>
@@ -63,129 +63,102 @@
     </header>
 
     <main class="container-xxl">
-      <div class="toc-offcanvas">
-        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
-          <div class="offcanvas-header">
-            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
-          </div>
-          <div class="offcanvas-body">
-            <nav class="toc" id="toc"></nav>
-          </div>
-        </div>
-      </div>
 
       <div class="content">
         <div class="actionbar">
-          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
-            <i class="bi bi-list"></i>
-          </button>
 
           <nav id="breadcrumb"></nav>
         </div>
 
         <article data-uid="">
-<h1 id="todo--backlog">TODO / backlog</h1>
 
-<p>Outstanding work and the <strong>one-time admin settings</strong> that the CI workflows can't
-configure themselves (they require repo-admin and live in GitHub settings, not in
-code). An agent or maintainer with admin should work through these.</p>
-<h2 id="per-repo-one-time-setup">Per-repo one-time setup</h2>
-<p>Apply to <strong>each</strong> repo: <code>game-launcher-web</code>, <code>game-controller</code>, <code>wiki</code>.</p>
-<ul>
-<li>[x] <strong>Pages source</strong> → <code>gh-pages</code> / <code>(root)</code>. <strong>Done</strong> for all three repos
-(set via <code>gh api -X PUT/POST repos/&lt;repo&gt;/pages</code>, <code>build_type=legacy</code>).</li>
-<li>[x] <strong>Branch protection</strong> on <code>main</code> → <strong>Done.</strong> Requires a PR and the <code>build</code>
-check (lint runs inside it); <code>strict=false</code>, <code>enforce_admins=false</code> so an
-admin can still bypass in a pinch.</li>
-<li>[x] <strong>Allow auto-merge</strong> → <strong>Done.</strong> PRs can use <code>gh pr merge --auto --squash</code>
-to merge themselves once the <code>build</code> check goes green.</li>
-<li>[x] <strong>Squash-only merging</strong> → <strong>Done.</strong> Squash enabled; merge-commit and rebase
-disabled, so every PR lands as one commit.</li>
-<li>[x] <strong>Automatically delete head branches</strong> → <strong>Done.</strong> (The cleanup job also
-deletes merged branches as a backstop.)</li>
-</ul>
-<blockquote>
-<p>All four were applied to the three repos via <code>gh api</code> (see the CLI block below).
-Free on these repos because they're <strong>public</strong> — branch protection / auto-merge
-only cost money on <em>private</em> repos.</p>
-</blockquote>
-<h3 id="cli-shortcut">CLI shortcut</h3>
-<p>Most of the above can be set with <code>gh</code> (requires admin auth):</p>
+<div class="mc mc--log" aria-label="Mission log and backlog">
+<div class="log-head">
+  <div>
+    <h1 class="log-head__title">Mission Log</h1>
+    <p class="log-head__sub">Outstanding setup + backlog · space-console fleet</p>
+  </div>
+  <div class="meter" role="img" aria-label="Deploy setup 5 of 5 complete">
+    <div class="meter__label"><span>Deploy setup</span><b>5 / 5 ONLINE</b></div>
+    <div class="meter__track"><div class="meter__fill" style="width:100%"></div></div>
+  </div>
+</div>
+<section class="mc-section" aria-label="Deploy infrastructure">
+  <h2 class="mc-h2"><span class="mc-h2__idx">01</span> DEPLOY INFRASTRUCTURE</h2>
+  <p class="hud__role" style="margin:-0.6rem 0 1.2rem">One-time admin settings the CI can't set itself — all applied to <b>game-launcher-web</b>, <b>game-controller</b>, and <b>wiki</b> via <code>gh api</code> (free, because the repos are public).</p>
+  <div class="task task--done">
+    <span class="task__box">✓</span>
+    <span class="task__body"><b>Pages source</b> → <code>gh-pages</code> / <code>(root)</code>, <code>build_type=legacy</code>. <span class="chip chip--ok">online</span></span>
+  </div>
+  <div class="task task--done">
+    <span class="task__box">✓</span>
+    <span class="task__body"><b>Branch protection</b> on <code>main</code> — requires a PR + the <code>build</code> check; <code>strict=false</code>, <code>enforce_admins=false</code> so an admin can still bypass. <span class="chip chip--ok">online</span></span>
+  </div>
+  <div class="task task--done">
+    <span class="task__box">✓</span>
+    <span class="task__body"><b>Auto-merge</b> — PRs self-merge once the <code>build</code> check is green (<code>gh pr merge --auto --squash</code>). <span class="chip chip--ok">online</span></span>
+  </div>
+  <div class="task task--done">
+    <span class="task__box">✓</span>
+    <span class="task__body"><b>Squash-only merging</b> — merge-commit + rebase disabled; every PR lands as one commit. <span class="chip chip--ok">online</span></span>
+  </div>
+  <div class="task task--done">
+    <span class="task__box">✓</span>
+    <span class="task__body"><b>Auto-delete head branches</b> on merge (the cleanup job is a backstop). <span class="chip chip--ok">online</span></span>
+  </div>
+</section>
+<section class="mc-section" aria-label="Fleet wiring status">
+  <h2 class="mc-h2"><span class="mc-h2__idx">02</span> FLEET WIRING STATUS</h2>
+  <div class="board-wrap">
+    <table class="board">
+      <thead>
+        <tr><th>Service</th><th>Pipeline</th><th>Pages</th><th>Protection</th><th>Auto-merge</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>game-launcher-web</td><td><span class="dot"></span></td><td><span class="dot"></span></td><td><span class="dot"></span></td><td><span class="dot"></span></td></tr>
+        <tr><td>game-controller</td><td><span class="dot"></span></td><td><span class="dot"></span></td><td><span class="dot"></span></td><td><span class="dot"></span></td></tr>
+        <tr><td>wiki</td><td><span class="dot"></span></td><td><span class="dot"></span></td><td><span class="dot"></span></td><td><span class="dot"></span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+<section class="mc-section" aria-label="Pending directives">
+  <h2 class="mc-h2"><span class="mc-h2__idx">03</span> PENDING DIRECTIVES</h2>
+  <div class="logentry">
+    <span class="logentry__tag">P1</span>
+    <span class="logentry__body"><b>Real transport</b> — implement <code>PlayerSession.connect()</code> (launcher) and the matching <code>ControllerSession.connect()/send()</code> (controller) over one shared WebSocket / WebRTC / AirConsole channel.</span>
+  </div>
+  <div class="logentry">
+    <span class="logentry__tag">P2</span>
+    <span class="logentry__body"><b>game-controller UX</b> — replace the placeholder pad with the real control surface once the first game's input needs are known.</span>
+  </div>
+  <div class="logentry">
+    <span class="logentry__tag">P3</span>
+    <span class="logentry__body"><b>Game catalog source</b> — <code>games.js</code> is static; decide if/when it moves to an API / CMS.</span>
+  </div>
+</section>
+</div>
+<h2 id="admin-cli-reference">Admin CLI reference</h2>
+<p>The infrastructure settings above were applied with <code>gh</code> (requires admin auth):</p>
 <pre><code class="lang-sh"># per repo, with R=space-console/&lt;repo&gt;
 gh api -X PATCH repos/$R -f allow_squash_merge=true \
   -f allow_merge_commit=false -f allow_rebase_merge=false \
   -f allow_auto_merge=true -f delete_branch_on_merge=true
-# branch protection requiring the checks (job names: &quot;build&quot;)
+# branch protection requiring the build check (job name: &quot;build&quot;)
 gh api -X PUT repos/$R/branches/main/protection \
   -f 'required_status_checks[strict]=false' \
   -f 'required_status_checks[contexts][]=build' \
   -f 'enforce_admins=false' \
   -f 'required_pull_request_reviews=' -f 'restrictions='
 </code></pre>
-<h2 id="wiring-status">Wiring status</h2>
-<table>
-<thead>
-<tr>
-<th>Repo</th>
-<th>Pipeline files</th>
-<th>Pages source set</th>
-<th>Branch protection</th>
-<th>Auto-merge</th>
-<th>Notes</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>game-launcher-web</td>
-<td>✅ <code>pages.yml</code>, stamp, lint</td>
-<td>✅</td>
-<td>✅</td>
-<td>✅</td>
-<td>docs migrated to wiki</td>
-</tr>
-<tr>
-<td>game-controller</td>
-<td>✅ <code>pages.yml</code>, stamp, lint</td>
-<td>✅</td>
-<td>✅</td>
-<td>✅</td>
-<td>placeholder app</td>
-</tr>
-<tr>
-<td>wiki</td>
-<td>✅ <code>pages.yml</code>, markdownlint</td>
-<td>✅</td>
-<td>✅</td>
-<td>✅</td>
-<td>docs hub</td>
-</tr>
-</tbody>
-</table>
-<h2 id="product-backlog">Product backlog</h2>
-<ul>
-<li>[ ] <strong>Real transport</strong> — implement <code>PlayerSession.connect()</code> (launcher) and the
-matching <code>ControllerSession.connect()/send()</code> (controller) over a shared
-WebSocket/WebRTC/AirConsole channel.</li>
-<li>[ ] <strong>game-controller UX</strong> — replace the placeholder pad with the real control
-surface once the first game's input needs are known.</li>
-<li>[ ] <strong>Game catalog source</strong> — <code>games.js</code> is static; decide if/when it moves to
-an API/CMS.</li>
-</ul>
 
 </article>
 
-        <div class="contribution d-print-none">
-          <a href="https://github.com/space-console/wiki/blob/main/docs/todo.md/#L1" class="edit-link">Edit this page</a>
-        </div>
 
         <div class="next-article d-print-none border-top" id="nextArticle"></div>
 
       </div>
 
-      <div class="affix">
-        <nav id="affix"></nav>
-      </div>
     </main>
 
     <div class="container-xxl search-results" id="search-results"></div>
@@ -193,7 +166,7 @@ an API/CMS.</li>
     <footer class="border-top text-secondary">
       <div class="container-xxl">
         <div class="flex-fill">
-          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+          <span>SPACE CONSOLE // MISSION CONTROL — telemetry nominal</span>
         </div>
       </div>
     </footer>

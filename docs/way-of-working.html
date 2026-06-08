@@ -2,9 +2,9 @@
 <html>
   <head>
     <meta charset="utf-8">
-      <title>Way of Working | Space Console Wiki </title>
+      <title>Way of Working | Space Console &#183; Mission Control </title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta name="title" content="Way of Working | Space Console Wiki ">
+      <meta name="title" content="Way of Working | Space Console &#183; Mission Control ">
       
       
       <link rel="icon" href="../favicon.ico">
@@ -44,8 +44,8 @@
       <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
         <div class="container-xxl flex-nowrap">
           <a class="navbar-brand" href="../index.html">
-            <img id="logo" class="svg" src="../logo.svg" alt="Space Console Wiki">
-            Space Console Wiki
+            <img id="logo" class="svg" src="../logo.svg" alt="SPACE CONSOLE">
+            SPACE CONSOLE
           </a>
           <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
             <i class="bi bi-three-dots"></i>
@@ -191,10 +191,18 @@ commit on <code>main</code>). Merging deploys to the production root.</li>
 feature branch is deleted.</li>
 </ol>
 <blockquote>
-<p>Auto-merge (merge automatically once checks go green) is the intended behavior;
-enabling it is a one-time repo setting tracked in <a href="todo.html">todo.md</a>. Until
-then, merge the PR yourself once it's green (<code>gh pr merge --squash</code>).</p>
+<p>Auto-merge is <strong>enabled</strong> on every repo, so a PR can self-merge once its
+<code>build</code> check goes green: <code>gh pr merge &lt;pr&gt; --squash --auto</code>.</p>
 </blockquote>
+<h3 id="handing-a-change-back-for-review-convention-for-ai-agents">Handing a change back for review (convention for AI agents)</h3>
+<p><strong>Preview before main, always.</strong> Don't merge a change the requester hasn't seen.
+Push the feature branch first so the preview deploys, then <strong>reply with a
+clickable link to the preview</strong> and wait for sign-off before merging:</p>
+<pre><code>https://space-console.github.io/&lt;repo&gt;/preview/&lt;slug&gt;-&lt;hash&gt;/
+</code></pre>
+<p>Only after the requester approves the preview do you enable auto-merge / squash
+to ship it to the production root. This applies to every visual or content change
+across all repos.</p>
 <h2 id="cache-busting-apps-only">Cache-busting (apps only)</h2>
 <p>Browsers — and especially TV browsers — cache aggressively. At <strong>deploy time</strong>
 only, <code>scripts/stamp.mjs</code> copies the site to <code>_dist/</code> and appends a per-build
@@ -216,9 +224,6 @@ generated in CI and never committed.</li>
 
 </article>
 
-        <div class="contribution d-print-none">
-          <a href="https://github.com/space-console/wiki/blob/main/docs/way-of-working.md/#L1" class="edit-link">Edit this page</a>
-        </div>
 
         <div class="next-article d-print-none border-top" id="nextArticle"></div>
 
@@ -234,7 +239,7 @@ generated in CI and never committed.</li>
     <footer class="border-top text-secondary">
       <div class="container-xxl">
         <div class="flex-fill">
-          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+          <span>SPACE CONSOLE // MISSION CONTROL — telemetry nominal</span>
         </div>
       </div>
     </footer>

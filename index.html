@@ -2,9 +2,9 @@
 <html>
   <head>
     <meta charset="utf-8">
-      <title>Home | Space Console Wiki </title>
+      <title>Mission Control | Space Console &#183; Mission Control </title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta name="title" content="Home | Space Console Wiki ">
+      <meta name="title" content="Mission Control | Space Console &#183; Mission Control ">
       
       
       <link rel="icon" href="favicon.ico">
@@ -39,13 +39,13 @@
 
   </head>
 
-  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+  <body class="tex2jax_ignore" data-layout="landing" data-yaml-mime="">
     <header class="bg-body border-bottom">
       <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
         <div class="container-xxl flex-nowrap">
           <a class="navbar-brand" href="index.html">
-            <img id="logo" class="svg" src="logo.svg" alt="Space Console Wiki">
-            Space Console Wiki
+            <img id="logo" class="svg" src="logo.svg" alt="SPACE CONSOLE">
+            SPACE CONSOLE
           </a>
           <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
             <i class="bi bi-three-dots"></i>
@@ -71,39 +71,98 @@
         </div>
 
         <article data-uid="">
-<h1 id="wiki">wiki</h1>
 
-<p><a href="https://github.com/space-console/game-launcher-web/actions/workflows/pages.yml"><img src="https://github.com/space-console/game-launcher-web/actions/workflows/pages.yml/badge.svg?branch=main" alt="game-launcher-web"></a>
-<a href="https://github.com/space-console/game-controller/actions/workflows/pages.yml"><img src="https://github.com/space-console/game-controller/actions/workflows/pages.yml/badge.svg?branch=main" alt="game-controller"></a>
-<a href="https://github.com/space-console/wiki/actions/workflows/pages.yml"><img src="https://github.com/space-console/wiki/actions/workflows/pages.yml/badge.svg?branch=main" alt="wiki"></a></p>
-<p>Central documentation hub for <strong>Space Console</strong> — built with <a href="https://dotnet.github.io/docfx/">DocFX</a> and published to GitHub Pages.</p>
-<p>This repo is the org-wide wiki and the <strong>single home for all documentation</strong> —
-cross-project guides, onboarding, and each service's docs all live here (under
-<code>docs/services/&lt;repo&gt;/</code>). Individual repos keep only a short README that links
-back here. It's also the process reference for AI agents: start at
-<code>docs/way-of-working.md</code>.</p>
-<h2 id="local-preview">Local preview</h2>
-<pre><code class="lang-sh">dotnet tool install -g docfx
-docfx docfx.json --serve
-</code></pre>
-<p>Then open <a href="http://localhost:8080">http://localhost:8080</a>.</p>
-<p>The published site is built and deployed on every push to <code>main</code> via
-<code>.github/workflows/pages.yml</code> (same <code>gh-pages</code> root/preview model every repo
-uses; see <code>docs/way-of-working.md</code>).</p>
+<div class="mc" aria-label="Space Console mission control">
+<header class="mc-hero">
+  <div class="mc-hero__glow" aria-hidden="true"></div>
+  <p class="mc-kicker"><span class="led led--cyan"></span> SYSTEM ONLINE · ORBITAL DOC RELAY</p>
+  <h1 class="mc-title">SPACE&nbsp;CONSOLE</h1>
+  <p class="mc-sub">MISSION&nbsp;CONTROL · the launch deck for every service, doc, and signal in the constellation.</p>
+  <div class="mc-readout">
+    <span class="mc-stat"><b id="mc-clock">--:--:--</b><i>UTC MISSION TIME</i></span>
+    <span class="mc-stat"><b>03</b><i>SERVICES TRACKED</i></span>
+    <span class="mc-stat"><b class="ok">NOMINAL</b><i>FLEET STATUS</i></span>
+  </div>
+</header>
+<section class="mc-section" aria-label="Services">
+  <h2 class="mc-h2"><span class="mc-h2__idx">01</span> FLEET / SERVICES</h2>
+  <div class="mc-grid">
+  <article class="hud hud--svc">
+    <div class="hud__bar"><span class="led led--cyan"></span> SC-01 · SCREEN</div>
+    <h3 class="hud__name">game-launcher-web</h3>
+    <p class="hud__role">The <b>TV / screen</b> — AirConsole-style party-game launcher for the 10-foot UI.</p>
+    <img class="hud__badge" alt="build status" src="https://github.com/space-console/game-launcher-web/actions/workflows/pages.yml/badge.svg?branch=main">
+    <div class="hud__act">
+      <a class="btn btn--go" href="https://space-console.github.io/game-launcher-web/" target="_blank" rel="noopener">▶ LAUNCH</a>
+      <a class="btn" href="docs/services/game-launcher-web/index.html">DOCS</a>
+      <a class="btn btn--ghost" href="https://github.com/space-console/game-launcher-web" target="_blank" rel="noopener">REPO</a>
+    </div>
+  </article>
+  <article class="hud hud--svc">
+    <div class="hud__bar"><span class="led led--magenta"></span> SC-02 · CONTROLLER</div>
+    <h3 class="hud__name">game-controller</h3>
+    <p class="hud__role">The <b>phone / controller</b> — joins a launcher by room code and sends input intents.</p>
+    <img class="hud__badge" alt="build status" src="https://github.com/space-console/game-controller/actions/workflows/pages.yml/badge.svg?branch=main">
+    <div class="hud__act">
+      <a class="btn btn--go" href="https://space-console.github.io/game-controller/" target="_blank" rel="noopener">▶ LAUNCH</a>
+      <a class="btn" href="docs/services/game-controller/index.html">DOCS</a>
+      <a class="btn btn--ghost" href="https://github.com/space-console/game-controller" target="_blank" rel="noopener">REPO</a>
+    </div>
+  </article>
+  <article class="hud hud--svc">
+    <div class="hud__bar"><span class="led led--amber"></span> SC-03 · RELAY</div>
+    <h3 class="hud__name">wiki</h3>
+    <p class="hud__role">This <b>documentation hub</b> — DocFX site + the way-of-working reference for AI agents.</p>
+    <img class="hud__badge" alt="build status" src="https://github.com/space-console/wiki/actions/workflows/pages.yml/badge.svg?branch=main">
+    <div class="hud__act">
+      <a class="btn btn--go" href="https://space-console.github.io/wiki/" target="_blank" rel="noopener">▶ LIVE</a>
+      <a class="btn" href="docs/repositories.html">INDEX</a>
+      <a class="btn btn--ghost" href="https://github.com/space-console/wiki" target="_blank" rel="noopener">REPO</a>
+    </div>
+  </article>
+  </div>
+</section>
+<section class="mc-section" aria-label="Documentation">
+  <h2 class="mc-h2"><span class="mc-h2__idx">02</span> NAV / DOCUMENTATION</h2>
+  <div class="mc-grid mc-grid--docs">
+    <a class="hud hud--link" href="docs/way-of-working.html">
+      <div class="hud__bar"><span class="led led--cyan"></span> PRIME DIRECTIVE</div>
+      <h3 class="hud__name">Way of Working</h3>
+      <p class="hud__role">CI/CD, branch previews, PR-before-merge, merge-after-green. Read this first.</p>
+      <span class="hud__chev">→</span>
+    </a>
+    <a class="hud hud--link" href="docs/getting-started.html">
+      <div class="hud__bar"><span class="led led--cyan"></span> ONBOARD</div>
+      <h3 class="hud__name">Getting Started</h3>
+      <p class="hud__role">Build the wiki locally, add a page, preview, ship.</p>
+      <span class="hud__chev">→</span>
+    </a>
+    <a class="hud hud--link" href="docs/repositories.html">
+      <div class="hud__bar"><span class="led led--cyan"></span> STAR CHART</div>
+      <h3 class="hud__name">Services &amp; Repositories</h3>
+      <p class="hud__role">The index of every repo, Pages URL, and preview pattern.</p>
+      <span class="hud__chev">→</span>
+    </a>
+    <a class="hud hud--link" href="docs/todo.html">
+      <div class="hud__bar"><span class="led led--amber"></span> MISSION LOG</div>
+      <h3 class="hud__name">TODO / Backlog</h3>
+      <p class="hud__role">Outstanding setup + product backlog across the fleet.</p>
+      <span class="hud__chev">→</span>
+    </a>
+  </div>
+</section>
+<footer class="mc-foot">
+  <span class="led led--cyan"></span> ALL SYSTEMS NOMINAL · gh-pages relay · <a href="https://github.com/space-console" target="_blank" rel="noopener">space-console</a>
+</footer>
+</div>
 
 </article>
 
-        <div class="contribution d-print-none">
-          <a href="https://github.com/space-console/wiki/blob/main/index.md/#L1" class="edit-link">Edit this page</a>
-        </div>
 
         <div class="next-article d-print-none border-top" id="nextArticle"></div>
 
       </div>
 
-      <div class="affix">
-        <nav id="affix"></nav>
-      </div>
     </main>
 
     <div class="container-xxl search-results" id="search-results"></div>
@@ -111,7 +170,7 @@ uses; see <code>docs/way-of-working.md</code>).</p>
     <footer class="border-top text-secondary">
       <div class="container-xxl">
         <div class="flex-fill">
-          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+          <span>SPACE CONSOLE // MISSION CONTROL — telemetry nominal</span>
         </div>
       </div>
     </footer>
