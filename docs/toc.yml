@@ -2,5 +2,11 @@
   href: index.md
 - name: Getting Started
   href: getting-started.md
-- name: Repositories
+- name: Way of Working
+  href: way-of-working.md
+- name: Services & Repositories
   href: repositories.md
+- name: Services
+  href: services/
+- name: TODO / Backlog
+  href: todo.md

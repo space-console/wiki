@@ -1,0 +1,14 @@
+{
+  // Lint markdown for structural issues, but don't fight prose style.
+  "config": {
+    "default": true,
+    "MD013": false, // line length — prose wraps freely
+    "MD033": false, // inline HTML — DocFX templates/snippets use it
+    "MD041": false, // first-line heading — files use YAML frontmatter / INCLUDE
+    "MD040": false, // fenced code language — we use bare fences for ASCII diagrams
+    "MD024": { "siblings_only": true }, // allow repeated headings in different sections
+    "MD025": { "front_matter_title": "" } // DocFX `title:` frontmatter isn't an H1
+  },
+  "globs": ["docs/**/*.md", "*.md"],
+  "ignores": ["_site/**", "**/node_modules/**", "CLAUDE.md"]
+}
