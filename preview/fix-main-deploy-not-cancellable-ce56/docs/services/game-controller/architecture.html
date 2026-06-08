@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Architecture — game-controller | Space Console Wiki </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Architecture — game-controller | Space Console Wiki ">
+      
+      
+      <link rel="icon" href="../../../favicon.ico">
+      <link rel="stylesheet" href="../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../../../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/space-console/wiki/blob/fix/main-deploy-not-cancellable/docs/services/game-controller/architecture.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../index.html">
+            <img id="logo" class="svg" src="../../../logo.svg" alt="Space Console Wiki">
+            Space Console Wiki
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="architecture--game-controller">Architecture — game-controller</h1>
+
+<p>A single static page (<code>index.html</code>) with two screens, driven by plain ES modules
+in <code>assets/js/</code>. Phone-first: portrait PWA, locked zoom, <code>touch-action</code> tuned for
+snappy taps.</p>
+<h2 id="screens">Screens</h2>
+<ol>
+<li><strong>Join</strong> — enter the 4-character room code shown on the TV and connect.</li>
+<li><strong>Control pad</strong> — a D-pad plus A/B action buttons, revealed once connected.</li>
+</ol>
+<h2 id="modules">Modules</h2>
+<table>
+<thead>
+<tr>
+<th>Module</th>
+<th>Responsibility</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>app.js</code></td>
+<td>Entry point. Drives the join form, swaps to the pad on <code>ready</code>, and routes every button through one intent emitter.</td>
+</tr>
+<tr>
+<td><code>session.js</code></td>
+<td><code>ControllerSession</code> — the transport seam; joins a room and <em>sends</em> intents.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="the-intent-model-mirror-of-the-launcher">The intent model (mirror of the launcher)</h2>
+<p>The launcher <em>receives</em> intents; the controller <em>sends</em> them. Same vocabulary —
+<code>up</code>, <code>down</code>, <code>left</code>, <code>right</code>, <code>enter</code>, <code>back</code> — so the two halves speak one
+language. The UI never talks to the transport directly; it calls one <code>emit()</code>
+that hands the intent to the session.</p>
+<pre><code> tap D-pad / A / B ─▶ app.js emit(intent) ─▶ ControllerSession.send(intent)
+                                                     │  (stub today)
+                                                     ▼
+                                          transport ─▶ launcher (TV)
+</code></pre>
+<h2 id="the-transport-seam-sessionjs">The transport seam (<code>session.js</code>)</h2>
+<p><code>ControllerSession</code> (an <code>EventTarget</code>) mirrors the launcher's <code>PlayerSession</code>.
+<code>connect(roomCode)</code> and <code>send(intent)</code> are <strong>stubs today</strong> (so the controller
+runs with no backend): <code>connect()</code> optimistically fires <code>ready</code>, and <code>send()</code>
+fires a local <code>sent</code> event. Drop a real WebSocket / WebRTC / AirConsole client in
+there — matched to the launcher's transport — without touching the UI.</p>
+<h2 id="design-intents-to-preserve">Design intents to preserve</h2>
+<ul>
+<li><strong>Zero-build, zero-backend</strong> — same ethos as the launcher.</li>
+<li><strong>One intent vocabulary</strong> shared with <code>game-launcher-web</code>; route all controls
+through <code>emit()</code> / <code>session.send()</code>, never bind UI straight to the transport.</li>
+</ul>
+<h2 id="deploy">Deploy</h2>
+<p>Same shared pipeline and CI-only cache-bust stamp as the launcher — see
+<a href="../../way-of-working.html">Way of working</a>.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/space-console/wiki/blob/fix/main-deploy-not-cancellable/docs/services/game-controller/architecture.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
