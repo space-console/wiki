@@ -93,8 +93,8 @@ code). An agent or maintainer with admin should work through these.</p>
 <h2 id="per-repo-one-time-setup">Per-repo one-time setup</h2>
 <p>Apply to <strong>each</strong> repo: <code>game-launcher-web</code>, <code>game-controller</code>, <code>wiki</code>.</p>
 <ul>
-<li>[ ] <strong>Pages source</strong> → Settings ▸ Pages ▸ <em>Deploy from a branch</em> → <code>gh-pages</code> / <code>(root)</code>.
-(The first <code>pages.yml</code> run creates the <code>gh-pages</code> branch.)</li>
+<li>[x] <strong>Pages source</strong> → <code>gh-pages</code> / <code>(root)</code>. <strong>Done</strong> for all three repos
+(set via <code>gh api -X PUT/POST repos/&lt;repo&gt;/pages</code>, <code>build_type=legacy</code>).</li>
 <li>[ ] <strong>Branch protection</strong> on <code>main</code> → require the <strong>build</strong> and <strong>lint</strong> status
 checks to pass before merging; require a PR (no direct pushes).</li>
 <li>[ ] <strong>Allow auto-merge</strong> → Settings ▸ General ▸ Pull Requests. Then PRs can use
@@ -133,7 +133,7 @@ gh api -X PUT repos/$R/branches/main/protection \
 <tr>
 <td>game-launcher-web</td>
 <td>✅ <code>pages.yml</code>, stamp, lint</td>
-<td>☐</td>
+<td>✅</td>
 <td>☐</td>
 <td>☐</td>
 <td>docs migrated to wiki</td>
@@ -141,7 +141,7 @@ gh api -X PUT repos/$R/branches/main/protection \
 <tr>
 <td>game-controller</td>
 <td>✅ <code>pages.yml</code>, stamp, lint</td>
-<td>☐</td>
+<td>✅</td>
 <td>☐</td>
 <td>☐</td>
 <td>placeholder app</td>
@@ -149,7 +149,7 @@ gh api -X PUT repos/$R/branches/main/protection \
 <tr>
 <td>wiki</td>
 <td>✅ <code>pages.yml</code>, markdownlint</td>
-<td>☐</td>
+<td>✅</td>
 <td>☐</td>
 <td>☐</td>
 <td>docs hub</td>
