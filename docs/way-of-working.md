@@ -75,9 +75,22 @@ e.g. `feature/new-page` → `…/preview/feature-new-page-9c2a/`.
 5. **Cleanup is automatic** — on merge, the preview folder is removed and the
    feature branch is deleted.
 
-> Auto-merge (merge automatically once checks go green) is the intended behavior;
-> enabling it is a one-time repo setting tracked in [todo.md](todo.md). Until
-> then, merge the PR yourself once it's green (`gh pr merge --squash`).
+> Auto-merge is **enabled** on every repo, so a PR can self-merge once its
+> `build` check goes green: `gh pr merge <pr> --squash --auto`.
+
+### Handing a change back for review (convention for AI agents)
+
+**Preview before main, always.** Don't merge a change the requester hasn't seen.
+Push the feature branch first so the preview deploys, then **reply with a
+clickable link to the preview** and wait for sign-off before merging:
+
+```
+https://space-console.github.io/<repo>/preview/<slug>-<hash>/
+```
+
+Only after the requester approves the preview do you enable auto-merge / squash
+to ship it to the production root. This applies to every visual or content change
+across all repos.
 
 ## Cache-busting (apps only)
 

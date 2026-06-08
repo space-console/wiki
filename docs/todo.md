@@ -1,64 +1,98 @@
 ---
+_layout: landing
+_disableToc: true
+_disableAffix: true
+_disableContribution: true
 title: TODO / Backlog
 ---
 
-# TODO / backlog
+<div class="mc mc--log" aria-label="Mission log and backlog">
 
-Outstanding work and the **one-time admin settings** that the CI workflows can't
-configure themselves (they require repo-admin and live in GitHub settings, not in
-code). An agent or maintainer with admin should work through these.
+<div class="log-head">
+  <div>
+    <h1 class="log-head__title">Mission Log</h1>
+    <p class="log-head__sub">Outstanding setup + backlog · space-console fleet</p>
+  </div>
+  <div class="meter" role="img" aria-label="Deploy setup 5 of 5 complete">
+    <div class="meter__label"><span>Deploy setup</span><b>5 / 5 ONLINE</b></div>
+    <div class="meter__track"><div class="meter__fill" style="width:100%"></div></div>
+  </div>
+</div>
 
-## Per-repo one-time setup
+<section class="mc-section" aria-label="Deploy infrastructure">
+  <h2 class="mc-h2"><span class="mc-h2__idx">01</span> DEPLOY INFRASTRUCTURE</h2>
+  <p class="hud__role" style="margin:-0.6rem 0 1.2rem">One-time admin settings the CI can't set itself — all applied to <b>game-launcher-web</b>, <b>game-controller</b>, and <b>wiki</b> via <code>gh api</code> (free, because the repos are public).</p>
 
-Apply to **each** repo: `game-launcher-web`, `game-controller`, `wiki`.
+  <div class="task task--done">
+    <span class="task__box">✓</span>
+    <span class="task__body"><b>Pages source</b> → <code>gh-pages</code> / <code>(root)</code>, <code>build_type=legacy</code>. <span class="chip chip--ok">online</span></span>
+  </div>
+  <div class="task task--done">
+    <span class="task__box">✓</span>
+    <span class="task__body"><b>Branch protection</b> on <code>main</code> — requires a PR + the <code>build</code> check; <code>strict=false</code>, <code>enforce_admins=false</code> so an admin can still bypass. <span class="chip chip--ok">online</span></span>
+  </div>
+  <div class="task task--done">
+    <span class="task__box">✓</span>
+    <span class="task__body"><b>Auto-merge</b> — PRs self-merge once the <code>build</code> check is green (<code>gh pr merge --auto --squash</code>). <span class="chip chip--ok">online</span></span>
+  </div>
+  <div class="task task--done">
+    <span class="task__box">✓</span>
+    <span class="task__body"><b>Squash-only merging</b> — merge-commit + rebase disabled; every PR lands as one commit. <span class="chip chip--ok">online</span></span>
+  </div>
+  <div class="task task--done">
+    <span class="task__box">✓</span>
+    <span class="task__body"><b>Auto-delete head branches</b> on merge (the cleanup job is a backstop). <span class="chip chip--ok">online</span></span>
+  </div>
+</section>
 
-- [x] **Pages source** → `gh-pages` / `(root)`. **Done** for all three repos
-      (set via `gh api -X PUT/POST repos/<repo>/pages`, `build_type=legacy`).
-- [x] **Branch protection** on `main` → **Done.** Requires a PR and the `build`
-      check (lint runs inside it); `strict=false`, `enforce_admins=false` so an
-      admin can still bypass in a pinch.
-- [x] **Allow auto-merge** → **Done.** PRs can use `gh pr merge --auto --squash`
-      to merge themselves once the `build` check goes green.
-- [x] **Squash-only merging** → **Done.** Squash enabled; merge-commit and rebase
-      disabled, so every PR lands as one commit.
-- [x] **Automatically delete head branches** → **Done.** (The cleanup job also
-      deletes merged branches as a backstop.)
+<section class="mc-section" aria-label="Fleet wiring status">
+  <h2 class="mc-h2"><span class="mc-h2__idx">02</span> FLEET WIRING STATUS</h2>
+  <div class="board-wrap">
+    <table class="board">
+      <thead>
+        <tr><th>Service</th><th>Pipeline</th><th>Pages</th><th>Protection</th><th>Auto-merge</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>game-launcher-web</td><td><span class="dot"></span></td><td><span class="dot"></span></td><td><span class="dot"></span></td><td><span class="dot"></span></td></tr>
+        <tr><td>game-controller</td><td><span class="dot"></span></td><td><span class="dot"></span></td><td><span class="dot"></span></td><td><span class="dot"></span></td></tr>
+        <tr><td>wiki</td><td><span class="dot"></span></td><td><span class="dot"></span></td><td><span class="dot"></span></td><td><span class="dot"></span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
 
-> All four were applied to the three repos via `gh api` (see the CLI block below).
-> Free on these repos because they're **public** — branch protection / auto-merge
-> only cost money on *private* repos.
+<section class="mc-section" aria-label="Pending directives">
+  <h2 class="mc-h2"><span class="mc-h2__idx">03</span> PENDING DIRECTIVES</h2>
 
-### CLI shortcut
+  <div class="logentry">
+    <span class="logentry__tag">P1</span>
+    <span class="logentry__body"><b>Real transport</b> — implement <code>PlayerSession.connect()</code> (launcher) and the matching <code>ControllerSession.connect()/send()</code> (controller) over one shared WebSocket / WebRTC / AirConsole channel.</span>
+  </div>
+  <div class="logentry">
+    <span class="logentry__tag">P2</span>
+    <span class="logentry__body"><b>game-controller UX</b> — replace the placeholder pad with the real control surface once the first game's input needs are known.</span>
+  </div>
+  <div class="logentry">
+    <span class="logentry__tag">P3</span>
+    <span class="logentry__body"><b>Game catalog source</b> — <code>games.js</code> is static; decide if/when it moves to an API / CMS.</span>
+  </div>
+</section>
 
-Most of the above can be set with `gh` (requires admin auth):
+</div>
+
+## Admin CLI reference
+
+The infrastructure settings above were applied with `gh` (requires admin auth):
 
 ```sh
 # per repo, with R=space-console/<repo>
 gh api -X PATCH repos/$R -f allow_squash_merge=true \
   -f allow_merge_commit=false -f allow_rebase_merge=false \
   -f allow_auto_merge=true -f delete_branch_on_merge=true
-# branch protection requiring the checks (job names: "build")
+# branch protection requiring the build check (job name: "build")
 gh api -X PUT repos/$R/branches/main/protection \
   -f 'required_status_checks[strict]=false' \
   -f 'required_status_checks[contexts][]=build' \
   -f 'enforce_admins=false' \
   -f 'required_pull_request_reviews=' -f 'restrictions='
 ```
-
-## Wiring status
-
-| Repo | Pipeline files | Pages source set | Branch protection | Auto-merge | Notes |
-| --- | --- | --- | --- | --- | --- |
-| game-launcher-web | ✅ `pages.yml`, stamp, lint | ✅ | ✅ | ✅ | docs migrated to wiki |
-| game-controller | ✅ `pages.yml`, stamp, lint | ✅ | ✅ | ✅ | placeholder app |
-| wiki | ✅ `pages.yml`, markdownlint | ✅ | ✅ | ✅ | docs hub |
-
-## Product backlog
-
-- [ ] **Real transport** — implement `PlayerSession.connect()` (launcher) and the
-      matching `ControllerSession.connect()/send()` (controller) over a shared
-      WebSocket/WebRTC/AirConsole channel.
-- [ ] **game-controller UX** — replace the placeholder pad with the real control
-      surface once the first game's input needs are known.
-- [ ] **Game catalog source** — `games.js` is static; decide if/when it moves to
-      an API/CMS.
