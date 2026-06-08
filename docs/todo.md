@@ -14,14 +14,19 @@ Apply to **each** repo: `game-launcher-web`, `game-controller`, `wiki`.
 
 - [x] **Pages source** → `gh-pages` / `(root)`. **Done** for all three repos
       (set via `gh api -X PUT/POST repos/<repo>/pages`, `build_type=legacy`).
-- [ ] **Branch protection** on `main` → require the **build** and **lint** status
-      checks to pass before merging; require a PR (no direct pushes).
-- [ ] **Allow auto-merge** → Settings ▸ General ▸ Pull Requests. Then PRs can use
-      `gh pr merge --auto --squash` to merge themselves once checks go green.
-- [ ] **Squash-only merging** → enable "Allow squash merging"; disable merge
-      commits and rebase merging so every PR lands as one commit.
-- [ ] **Automatically delete head branches** → Settings ▸ General ▸ Pull Requests.
-      (The cleanup job also deletes merged branches as a backstop.)
+- [x] **Branch protection** on `main` → **Done.** Requires a PR and the `build`
+      check (lint runs inside it); `strict=false`, `enforce_admins=false` so an
+      admin can still bypass in a pinch.
+- [x] **Allow auto-merge** → **Done.** PRs can use `gh pr merge --auto --squash`
+      to merge themselves once the `build` check goes green.
+- [x] **Squash-only merging** → **Done.** Squash enabled; merge-commit and rebase
+      disabled, so every PR lands as one commit.
+- [x] **Automatically delete head branches** → **Done.** (The cleanup job also
+      deletes merged branches as a backstop.)
+
+> All four were applied to the three repos via `gh api` (see the CLI block below).
+> Free on these repos because they're **public** — branch protection / auto-merge
+> only cost money on *private* repos.
 
 ### CLI shortcut
 
@@ -34,7 +39,7 @@ gh api -X PATCH repos/$R -f allow_squash_merge=true \
   -f allow_auto_merge=true -f delete_branch_on_merge=true
 # branch protection requiring the checks (job names: "build")
 gh api -X PUT repos/$R/branches/main/protection \
-  -f 'required_status_checks[strict]=true' \
+  -f 'required_status_checks[strict]=false' \
   -f 'required_status_checks[contexts][]=build' \
   -f 'enforce_admins=false' \
   -f 'required_pull_request_reviews=' -f 'restrictions='
@@ -44,9 +49,9 @@ gh api -X PUT repos/$R/branches/main/protection \
 
 | Repo | Pipeline files | Pages source set | Branch protection | Auto-merge | Notes |
 | --- | --- | --- | --- | --- | --- |
-| game-launcher-web | ✅ `pages.yml`, stamp, lint | ✅ | ☐ | ☐ | docs migrated to wiki |
-| game-controller | ✅ `pages.yml`, stamp, lint | ✅ | ☐ | ☐ | placeholder app |
-| wiki | ✅ `pages.yml`, markdownlint | ✅ | ☐ | ☐ | docs hub |
+| game-launcher-web | ✅ `pages.yml`, stamp, lint | ✅ | ✅ | ✅ | docs migrated to wiki |
+| game-controller | ✅ `pages.yml`, stamp, lint | ✅ | ✅ | ✅ | placeholder app |
+| wiki | ✅ `pages.yml`, markdownlint | ✅ | ✅ | ✅ | docs hub |
 
 ## Product backlog
 
