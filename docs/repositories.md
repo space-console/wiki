@@ -12,6 +12,7 @@ The canonical index of Space Console repositories. Every repo lives in the
 | --- | --- | --- | --- |
 | [game-launcher-web](https://github.com/space-console/game-launcher-web) | The **TV / screen** — AirConsole-style party-game launcher (10-foot UI). | <https://space-console.github.io/game-launcher-web/> | [docs](services/game-launcher-web/index.md) |
 | [game-controller](https://github.com/space-console/game-controller) | The **phone / controller** — joins a launcher by room code and sends input. | <https://space-console.github.io/game-controller/> | [docs](services/game-controller/index.md) |
+| [tetris](https://github.com/space-console/tetris) | The first playable **game** — runs on the launcher, driven by the shared intent vocabulary. | <https://space-console.github.io/tetris/> | [docs](services/tetris/index.md) |
 | [wiki](https://github.com/space-console/wiki) | This org-wide documentation hub (DocFX). | <https://space-console.github.io/wiki/> | You're reading it. |
 
 ## Build status
@@ -23,6 +24,7 @@ red = failing, yellow = a run is in progress). Click a badge for the run logs.
 | --- | --- |
 | game-launcher-web | [![game-launcher-web Pages](https://github.com/space-console/game-launcher-web/actions/workflows/pages.yml/badge.svg?branch=main)](https://github.com/space-console/game-launcher-web/actions/workflows/pages.yml) |
 | game-controller | [![game-controller Pages](https://github.com/space-console/game-controller/actions/workflows/pages.yml/badge.svg?branch=main)](https://github.com/space-console/game-controller/actions/workflows/pages.yml) |
+| tetris | [![tetris Pages](https://github.com/space-console/tetris/actions/workflows/pages.yml/badge.svg?branch=main)](https://github.com/space-console/tetris/actions/workflows/pages.yml) |
 | wiki | [![wiki Pages](https://github.com/space-console/wiki/actions/workflows/pages.yml/badge.svg?branch=main)](https://github.com/space-console/wiki/actions/workflows/pages.yml) |
 
 > Badges read "no status" until each repo's first `pages.yml` run lands on
