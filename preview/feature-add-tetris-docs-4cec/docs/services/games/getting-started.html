@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Getting started — games | Space Console &#183; Mission Control </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Getting started — games | Space Console &#183; Mission Control ">
+      
+      
+      <link rel="icon" href="../../../favicon.ico">
+      <link rel="stylesheet" href="../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../../../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/space-console/wiki/blob/feature/add-tetris-docs/docs/services/games/getting-started.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../index.html">
+            <img id="logo" class="svg" src="../../../logo.svg" alt="SPACE CONSOLE">
+            SPACE CONSOLE
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="getting-started--games">Getting started — games</h1>
+
+<h2 id="prerequisites">Prerequisites</h2>
+<ul>
+<li>Node.js &gt;= 18 (dev server only — no build/bundle step).</li>
+</ul>
+<h2 id="run-locally">Run locally</h2>
+<pre><code class="lang-sh">git clone git@github_xhevops:space-console/games.git
+cd games
+npm install      # installs the dev server only
+npm run dev      # live-server on http://localhost:5175 (auto-reload)
+</code></pre>
+<p>It runs on <strong>:5175</strong> so it can sit alongside the launcher (<code>:5173</code>) and the
+controller (<code>:5174</code>) during local testing. The hub (<code>index.html</code>) is the menu;
+each game lives in its own folder and is reachable at <code>/&lt;game-id&gt;/</code>
+(e.g. <code>/tetris/</code>, <code>/snake/</code>, <code>/chess/</code>).</p>
+<h2 id="useful-commands">Useful commands</h2>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>npm run dev</code></td>
+<td>Live-reloading dev server on :5175.</td>
+</tr>
+<tr>
+<td><code>npm start</code></td>
+<td>Plain static serve on :5175 (no reload).</td>
+</tr>
+<tr>
+<td><code>npm run lint</code></td>
+<td>ESLint over every game and the hub.</td>
+</tr>
+<tr>
+<td><code>npm run build</code></td>
+<td><strong>CI-only</strong> cache-bust stamp → <code>_dist/</code>.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="controls">Controls</h2>
+<p>Every game routes through the shared intent layer, so any input source works the
+same way across the collection:</p>
+<table>
+<thead>
+<tr>
+<th>Intent</th>
+<th>Keyboard</th>
+<th>Typical action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>left / right</td>
+<td>← → (or A / D)</td>
+<td>Move / navigate</td>
+</tr>
+<tr>
+<td>up / down</td>
+<td>↑ ↓ (or W / S)</td>
+<td>Move / navigate</td>
+</tr>
+<tr>
+<td>enter</td>
+<td>Enter / Space</td>
+<td>Select · confirm · start</td>
+</tr>
+<tr>
+<td>back</td>
+<td>Esc / Back</td>
+<td>Pause · return</td>
+</tr>
+</tbody>
+</table>
+<p>Per-game specifics (e.g. Tetris rotate vs. soft drop) are noted in each game's
+own UI; see <a href="architecture.html">Architecture</a> for how intents map per game.</p>
+
+</article>
+
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>SPACE CONSOLE // MISSION CONTROL — telemetry nominal</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

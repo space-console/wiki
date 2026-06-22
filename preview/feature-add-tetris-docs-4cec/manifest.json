@@ -1,0 +1,363 @@
+{
+  "source_base_path": "/home/runner/work/wiki/wiki",
+  "xrefmap": "xrefmap.yml",
+  "files": [
+    {
+      "type": "Resource",
+      "output": {
+        "resource": {
+          "relative_path": "index.json"
+        }
+      }
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "README.md",
+      "output": {
+        ".html": {
+          "relative_path": "README.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/README.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/README.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/getting-started.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/getting-started.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/index.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/index.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/repositories.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/repositories.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/services/game-controller/architecture.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/services/game-controller/architecture.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/services/game-controller/getting-started.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/services/game-controller/getting-started.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/services/game-controller/index.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/services/game-controller/index.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "docs/services/game-controller/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "docs/services/game-controller/toc.html"
+        },
+        ".json": {
+          "relative_path": "docs/services/game-controller/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/services/game-launcher-web/architecture.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/services/game-launcher-web/architecture.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/services/game-launcher-web/getting-started.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/services/game-launcher-web/getting-started.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/services/game-launcher-web/index.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/services/game-launcher-web/index.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "docs/services/game-launcher-web/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "docs/services/game-launcher-web/toc.html"
+        },
+        ".json": {
+          "relative_path": "docs/services/game-launcher-web/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/services/games/architecture.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/services/games/architecture.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/services/games/getting-started.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/services/games/getting-started.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/services/games/index.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/services/games/index.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "docs/services/games/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "docs/services/games/toc.html"
+        },
+        ".json": {
+          "relative_path": "docs/services/games/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/services/index.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/services/index.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/services/tetris/architecture.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/services/tetris/architecture.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/services/tetris/getting-started.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/services/tetris/getting-started.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/services/tetris/index.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/services/tetris/index.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "docs/services/tetris/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "docs/services/tetris/toc.html"
+        },
+        ".json": {
+          "relative_path": "docs/services/tetris/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "docs/services/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "docs/services/toc.html"
+        },
+        ".json": {
+          "relative_path": "docs/services/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/services/web-api/architecture.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/services/web-api/architecture.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/services/web-api/getting-started.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/services/web-api/getting-started.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/services/web-api/index.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/services/web-api/index.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "docs/services/web-api/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "docs/services/web-api/toc.html"
+        },
+        ".json": {
+          "relative_path": "docs/services/web-api/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "docs/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "docs/toc.html"
+        },
+        ".json": {
+          "relative_path": "docs/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/todo.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/todo.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/way-of-working.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/way-of-working.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "index.md",
+      "output": {
+        ".html": {
+          "relative_path": "index.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "toc.html"
+        },
+        ".json": {
+          "relative_path": "toc.json"
+        }
+      },
+      "version": ""
+    }
+  ],
+  "groups": [
+    {
+      "xrefmap": "xrefmap.yml"
+    }
+  ]
+}
