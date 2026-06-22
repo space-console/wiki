@@ -94,11 +94,11 @@
       "type": "Toc",
       "source_relative_path": "docs/services/game-controller/toc.yml",
       "output": {
-        ".json": {
-          "relative_path": "docs/services/game-controller/toc.json"
-        },
         ".html": {
           "relative_path": "docs/services/game-controller/toc.html"
+        },
+        ".json": {
+          "relative_path": "docs/services/game-controller/toc.json"
         }
       },
       "version": ""
@@ -137,11 +137,11 @@
       "type": "Toc",
       "source_relative_path": "docs/services/game-launcher-web/toc.yml",
       "output": {
-        ".json": {
-          "relative_path": "docs/services/game-launcher-web/toc.json"
-        },
         ".html": {
           "relative_path": "docs/services/game-launcher-web/toc.html"
+        },
+        ".json": {
+          "relative_path": "docs/services/game-launcher-web/toc.json"
         }
       },
       "version": ""
@@ -160,11 +160,11 @@
       "type": "Toc",
       "source_relative_path": "docs/services/toc.yml",
       "output": {
-        ".json": {
-          "relative_path": "docs/services/toc.json"
-        },
         ".html": {
           "relative_path": "docs/services/toc.html"
+        },
+        ".json": {
+          "relative_path": "docs/services/toc.json"
         }
       },
       "version": ""
@@ -173,11 +173,11 @@
       "type": "Toc",
       "source_relative_path": "docs/toc.yml",
       "output": {
-        ".json": {
-          "relative_path": "docs/toc.json"
-        },
         ".html": {
           "relative_path": "docs/toc.html"
+        },
+        ".json": {
+          "relative_path": "docs/toc.json"
         }
       },
       "version": ""
@@ -216,11 +216,11 @@
       "type": "Toc",
       "source_relative_path": "toc.yml",
       "output": {
-        ".json": {
-          "relative_path": "toc.json"
-        },
         ".html": {
           "relative_path": "toc.html"
+        },
+        ".json": {
+          "relative_path": "toc.json"
         }
       },
       "version": ""
