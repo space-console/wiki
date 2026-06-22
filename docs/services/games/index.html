@@ -2,21 +2,21 @@
 <html>
   <head>
     <meta charset="utf-8">
-      <title>Services | Space Console &#183; Mission Control </title>
+      <title>games | Space Console &#183; Mission Control </title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta name="title" content="Services | Space Console &#183; Mission Control ">
+      <meta name="title" content="games | Space Console &#183; Mission Control ">
       
       
-      <link rel="icon" href="../../favicon.ico">
-      <link rel="stylesheet" href="../../public/docfx.min.css">
-      <link rel="stylesheet" href="../../public/main.css">
-      <meta name="docfx:navrel" content="../../toc.html">
+      <link rel="icon" href="../../../favicon.ico">
+      <link rel="stylesheet" href="../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../toc.html">
       <meta name="docfx:tocrel" content="toc.html">
       
-      <meta name="docfx:rel" content="../../">
+      <meta name="docfx:rel" content="../../../">
       
       
-      <meta name="docfx:docurl" content="https://github.com/space-console/wiki/blob/main/docs/services/index.md/#L1">
+      <meta name="docfx:docurl" content="https://github.com/space-console/wiki/blob/main/docs/services/games/index.md/#L1">
       <meta name="loc:inThisArticle" content="In this article">
       <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
       <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
@@ -30,7 +30,7 @@
       <meta name="loc:copy" content="Copy">
       <meta name="loc:downloadPdf" content="Download PDF">
 
-      <script type="module" src="./../../public/docfx.min.js"></script>
+      <script type="module" src="./../../../public/docfx.min.js"></script>
 
       <script>
         const theme = localStorage.getItem('theme') || 'auto'
@@ -43,8 +43,8 @@
     <header class="bg-body border-bottom">
       <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
         <div class="container-xxl flex-nowrap">
-          <a class="navbar-brand" href="../../index.html">
-            <img id="logo" class="svg" src="../../logo.svg" alt="SPACE CONSOLE">
+          <a class="navbar-brand" href="../../../index.html">
+            <img id="logo" class="svg" src="../../../logo.svg" alt="SPACE CONSOLE">
             SPACE CONSOLE
           </a>
           <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
@@ -85,19 +85,33 @@
         </div>
 
         <article data-uid="">
-<h1 id="services">Services</h1>
+<h1 id="games">games</h1>
 
-<p>Per-service documentation. The full index — roles, production URLs, preview
-pattern — lives in <a href="../repositories.html">Services &amp; repositories</a>.</p>
+<p><strong>games</strong> — the Space Console game collection. A single repo holding <strong>30
+playable games</strong> (Tetris, Snake, Chess, Sudoku, Poker, Solitaire, Uno, and
+more), each a self-contained static site under its own folder, plus a <strong>hub</strong>
+menu (<code>index.html</code>) that lists them all.</p>
+<p>Every game is driven by the same shared <strong>intent vocabulary</strong>
+(<code>up</code>/<code>down</code>/<code>left</code>/<code>right</code>/<code>enter</code>/<code>back</code>) the
+<a href="../game-launcher-web/index.html">launcher</a> and
+<a href="../game-controller/index.html">controller</a> already speak — so a keyboard, TV
+remote, gamepad, or (later) a phone controller all drive them with no changes.</p>
+<p>Like the rest of the org it's a <strong>zero-build, zero-backend static site</strong> — plain
+ES modules, no framework. Open <code>index.html</code> and it runs.</p>
 <ul>
-<li><a href="game-launcher-web/index.html">game-launcher-web</a> — the TV / screen (launcher).</li>
-<li><a href="game-controller/index.html">game-controller</a> — the phone / controller client.</li>
-<li><a href="games/index.html">games</a> — the collection of playable games (30 of them).</li>
-<li><a href="tetris/index.html">tetris</a> — the first playable game; runs on the launcher.</li>
-<li><a href="web-api/index.html">web-api</a> — the WebRTC signaling relay (TV↔phone pairing).</li>
+<li><a href="getting-started.html">Getting started</a> — run the collection locally.</li>
+<li><a href="architecture.html">Architecture</a> — the hub, the per-game folders, the shared
+intent layer, and how the launcher consumes the catalog.</li>
 </ul>
-<p>All services share one build/deploy pipeline; see
-<a href="../way-of-working.html">Way of working</a>.</p>
+<p>Production: <a href="https://space-console.github.io/games/">https://space-console.github.io/games/</a> (each game lives at
+<code>…/games/&lt;id&gt;/</code>).</p>
+<blockquote>
+<p><strong>Relationship to the launcher.</strong> The
+<a href="../game-launcher-web/index.html">game-launcher-web</a> catalog points at these
+games by their sibling Pages path (<code>../games/&lt;id&gt;/</code>), so selecting a game on
+the TV opens its deployed site. Tetris — documented separately under
+<a href="../tetris/index.html">tetris</a> — is one of the games bundled in this collection.</p>
+</blockquote>
 
 </article>
 

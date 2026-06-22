@@ -148,10 +148,96 @@
     },
     {
       "type": "Conceptual",
+      "source_relative_path": "docs/services/games/architecture.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/services/games/architecture.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/services/games/getting-started.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/services/games/getting-started.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/services/games/index.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/services/games/index.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "docs/services/games/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "docs/services/games/toc.html"
+        },
+        ".json": {
+          "relative_path": "docs/services/games/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
       "source_relative_path": "docs/services/index.md",
       "output": {
         ".html": {
           "relative_path": "docs/services/index.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/services/tetris/architecture.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/services/tetris/architecture.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/services/tetris/getting-started.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/services/tetris/getting-started.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/services/tetris/index.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/services/tetris/index.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "docs/services/tetris/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "docs/services/tetris/toc.html"
+        },
+        ".json": {
+          "relative_path": "docs/services/tetris/toc.json"
         }
       },
       "version": ""
@@ -165,6 +251,49 @@
         },
         ".json": {
           "relative_path": "docs/services/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/services/web-api/architecture.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/services/web-api/architecture.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/services/web-api/getting-started.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/services/web-api/getting-started.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/services/web-api/index.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/services/web-api/index.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "docs/services/web-api/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "docs/services/web-api/toc.html"
+        },
+        ".json": {
+          "relative_path": "docs/services/web-api/toc.json"
         }
       },
       "version": ""

@@ -124,17 +124,25 @@
 </section>
 <section class="mc-section" aria-label="Pending directives">
   <h2 class="mc-h2"><span class="mc-h2__idx">03</span> PENDING DIRECTIVES</h2>
-  <div class="logentry">
-    <span class="logentry__tag">P1</span>
-    <span class="logentry__body"><b>Real transport</b> — implement <code>PlayerSession.connect()</code> (launcher) and the matching <code>ControllerSession.connect()/send()</code> (controller) over one shared WebSocket / WebRTC / AirConsole channel.</span>
+  <div class="logentry logentry--done">
+    <span class="logentry__tag">P1 ✓</span>
+    <span class="logentry__body"><b>Real transport — WebRTC P2P.</b> Done. <code>PlayerSession.connect()</code> (launcher = hub/answerer, one peer per phone) and <code>ControllerSession.connect()/send()</code> (controller = offerer) now open a real <b>WebRTC DataChannel</b>; intents flow phone→TV peer-to-peer. The new <b>web-api</b> service is a thin signaling relay (SDP/ICE) keyed by room code. Verified end-to-end in a browser. See <a href="services/web-api/architecture.html">web-api / transport architecture</a>.</span>
   </div>
   <div class="logentry">
     <span class="logentry__tag">P2</span>
-    <span class="logentry__body"><b>game-controller UX</b> — replace the placeholder pad with the real control surface once the first game's input needs are known.</span>
+    <span class="logentry__body"><b>Persistent game shell (next).</b> The launcher launches a game by full navigation (<code>location.href = ../games/&lt;id&gt;/</code>), which unloads the page and <b>drops the peer connection</b> — so today a phone drives the launcher <i>menu</i> but not a <i>running game</i>. Host games in a persistent shell (iframe / in-page swap) so the controller link survives launch and games can consume controller intents.</span>
   </div>
   <div class="logentry">
     <span class="logentry__tag">P3</span>
-    <span class="logentry__body"><b>Game catalog source</b> — <code>games.js</code> is static; decide if/when it moves to an API / CMS.</span>
+    <span class="logentry__body"><b>game-controller UX</b> — replace the placeholder pad with the real per-game control surface once a game actually consumes controller input (after P2).</span>
+  </div>
+  <div class="logentry">
+    <span class="logentry__tag">P4</span>
+    <span class="logentry__body"><b>Game catalog source</b> — <code>games.js</code> is now wired to the real <a href="services/games/index.html">games</a> collection (30 games, sibling Pages paths) but is still a static module; decide if/when it moves to an API / CMS (could be served by <b>web-api</b>).</span>
+  </div>
+  <div class="logentry">
+    <span class="logentry__tag">P5</span>
+    <span class="logentry__body"><b>Signaling deploy</b> — <b>web-api</b> runs on a laptop (<code>ws://&lt;host&gt;:8080</code>) for dev. Host it for non-LAN play (add <code>wss://</code> + a public origin, and optional TURN for networks where direct P2P fails).</span>
   </div>
 </section>
 </div>

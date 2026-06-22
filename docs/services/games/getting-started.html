@@ -2,21 +2,21 @@
 <html>
   <head>
     <meta charset="utf-8">
-      <title>Services | Space Console &#183; Mission Control </title>
+      <title>Getting started — games | Space Console &#183; Mission Control </title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta name="title" content="Services | Space Console &#183; Mission Control ">
+      <meta name="title" content="Getting started — games | Space Console &#183; Mission Control ">
       
       
-      <link rel="icon" href="../../favicon.ico">
-      <link rel="stylesheet" href="../../public/docfx.min.css">
-      <link rel="stylesheet" href="../../public/main.css">
-      <meta name="docfx:navrel" content="../../toc.html">
+      <link rel="icon" href="../../../favicon.ico">
+      <link rel="stylesheet" href="../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../toc.html">
       <meta name="docfx:tocrel" content="toc.html">
       
-      <meta name="docfx:rel" content="../../">
+      <meta name="docfx:rel" content="../../../">
       
       
-      <meta name="docfx:docurl" content="https://github.com/space-console/wiki/blob/main/docs/services/index.md/#L1">
+      <meta name="docfx:docurl" content="https://github.com/space-console/wiki/blob/main/docs/services/games/getting-started.md/#L1">
       <meta name="loc:inThisArticle" content="In this article">
       <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
       <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
@@ -30,7 +30,7 @@
       <meta name="loc:copy" content="Copy">
       <meta name="loc:downloadPdf" content="Download PDF">
 
-      <script type="module" src="./../../public/docfx.min.js"></script>
+      <script type="module" src="./../../../public/docfx.min.js"></script>
 
       <script>
         const theme = localStorage.getItem('theme') || 'auto'
@@ -43,8 +43,8 @@
     <header class="bg-body border-bottom">
       <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
         <div class="container-xxl flex-nowrap">
-          <a class="navbar-brand" href="../../index.html">
-            <img id="logo" class="svg" src="../../logo.svg" alt="SPACE CONSOLE">
+          <a class="navbar-brand" href="../../../index.html">
+            <img id="logo" class="svg" src="../../../logo.svg" alt="SPACE CONSOLE">
             SPACE CONSOLE
           </a>
           <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
@@ -85,19 +85,85 @@
         </div>
 
         <article data-uid="">
-<h1 id="services">Services</h1>
+<h1 id="getting-started--games">Getting started — games</h1>
 
-<p>Per-service documentation. The full index — roles, production URLs, preview
-pattern — lives in <a href="../repositories.html">Services &amp; repositories</a>.</p>
+<h2 id="prerequisites">Prerequisites</h2>
 <ul>
-<li><a href="game-launcher-web/index.html">game-launcher-web</a> — the TV / screen (launcher).</li>
-<li><a href="game-controller/index.html">game-controller</a> — the phone / controller client.</li>
-<li><a href="games/index.html">games</a> — the collection of playable games (30 of them).</li>
-<li><a href="tetris/index.html">tetris</a> — the first playable game; runs on the launcher.</li>
-<li><a href="web-api/index.html">web-api</a> — the WebRTC signaling relay (TV↔phone pairing).</li>
+<li>Node.js &gt;= 18 (dev server only — no build/bundle step).</li>
 </ul>
-<p>All services share one build/deploy pipeline; see
-<a href="../way-of-working.html">Way of working</a>.</p>
+<h2 id="run-locally">Run locally</h2>
+<pre><code class="lang-sh">git clone git@github_xhevops:space-console/games.git
+cd games
+npm install      # installs the dev server only
+npm run dev      # live-server on http://localhost:5175 (auto-reload)
+</code></pre>
+<p>It runs on <strong>:5175</strong> so it can sit alongside the launcher (<code>:5173</code>) and the
+controller (<code>:5174</code>) during local testing. The hub (<code>index.html</code>) is the menu;
+each game lives in its own folder and is reachable at <code>/&lt;game-id&gt;/</code>
+(e.g. <code>/tetris/</code>, <code>/snake/</code>, <code>/chess/</code>).</p>
+<h2 id="useful-commands">Useful commands</h2>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>npm run dev</code></td>
+<td>Live-reloading dev server on :5175.</td>
+</tr>
+<tr>
+<td><code>npm start</code></td>
+<td>Plain static serve on :5175 (no reload).</td>
+</tr>
+<tr>
+<td><code>npm run lint</code></td>
+<td>ESLint over every game and the hub.</td>
+</tr>
+<tr>
+<td><code>npm run build</code></td>
+<td><strong>CI-only</strong> cache-bust stamp → <code>_dist/</code>.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="controls">Controls</h2>
+<p>Every game routes through the shared intent layer, so any input source works the
+same way across the collection:</p>
+<table>
+<thead>
+<tr>
+<th>Intent</th>
+<th>Keyboard</th>
+<th>Typical action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>left / right</td>
+<td>← → (or A / D)</td>
+<td>Move / navigate</td>
+</tr>
+<tr>
+<td>up / down</td>
+<td>↑ ↓ (or W / S)</td>
+<td>Move / navigate</td>
+</tr>
+<tr>
+<td>enter</td>
+<td>Enter / Space</td>
+<td>Select · confirm · start</td>
+</tr>
+<tr>
+<td>back</td>
+<td>Esc / Back</td>
+<td>Pause · return</td>
+</tr>
+</tbody>
+</table>
+<p>Per-game specifics (e.g. Tetris rotate vs. soft drop) are noted in each game's
+own UI; see <a href="architecture.html">Architecture</a> for how intents map per game.</p>
 
 </article>
 
