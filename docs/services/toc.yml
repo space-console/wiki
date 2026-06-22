@@ -4,3 +4,9 @@
   href: game-launcher-web/
 - name: game-controller
   href: game-controller/
+- name: games
+  href: games/
+- name: tetris
+  href: tetris/
+- name: web-api
+  href: web-api/
