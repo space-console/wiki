@@ -128,9 +128,9 @@
     <span class="logentry__tag">P1 ✓</span>
     <span class="logentry__body"><b>Real transport — WebRTC P2P.</b> Done. <code>PlayerSession.connect()</code> (launcher = hub/answerer, one peer per phone) and <code>ControllerSession.connect()/send()</code> (controller = offerer) now open a real <b>WebRTC DataChannel</b>; intents flow phone→TV peer-to-peer. The new <b>web-api</b> service is a thin signaling relay (SDP/ICE) keyed by room code. Verified end-to-end in a browser. See <a href="services/web-api/architecture.html">web-api / transport architecture</a>.</span>
   </div>
-  <div class="logentry">
-    <span class="logentry__tag">P2</span>
-    <span class="logentry__body"><b>Persistent game shell (next).</b> The launcher launches a game by full navigation (<code>location.href = ../games/&lt;id&gt;/</code>), which unloads the page and <b>drops the peer connection</b> — so today a phone drives the launcher <i>menu</i> but not a <i>running game</i>. Host games in a persistent shell (iframe / in-page swap) so the controller link survives launch and games can consume controller intents.</span>
+  <div class="logentry logentry--done">
+    <span class="logentry__tag">P2 ✓</span>
+    <span class="logentry__body"><b>Persistent game shell.</b> Done. The launcher now loads a game into a full-screen <b>iframe shell</b> instead of navigating away, so the page — and its live WebRTC controller links — <b>survive launch</b>. Controller intents are relayed into the running game over <code>postMessage</code> (<code>sc:intent</code>), injected through each game's shared <code>Input</code> layer with no per-game change; <b>Back</b> returns to the menu still connected. Verified with two clients on one machine. (Phone-over-LAN play depends on direct P2P succeeding — see <b>P5</b>.)</span>
   </div>
   <div class="logentry">
     <span class="logentry__tag">P3</span>
