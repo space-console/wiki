@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Architecture — tetris | Space Console &#183; Mission Control </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Architecture — tetris | Space Console &#183; Mission Control ">
+      
+      
+      <link rel="icon" href="../../../favicon.ico">
+      <link rel="stylesheet" href="../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../../../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/space-console/wiki/blob/docs/p2-shell-done/docs/services/tetris/architecture.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../index.html">
+            <img id="logo" class="svg" src="../../../logo.svg" alt="SPACE CONSOLE">
+            SPACE CONSOLE
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="architecture--tetris">Architecture — tetris</h1>
+
+<p>A single static page (<code>index.html</code>) with two <code>&lt;canvas&gt;</code> surfaces — the playfield
+and the &quot;next&quot; preview — driven by plain ES modules in <code>assets/js/</code>. The code
+splits cleanly into a <strong>pure game core</strong> and a thin <strong>input + render</strong> shell, so
+the rules are testable without a DOM.</p>
+<h2 id="modules">Modules</h2>
+<table>
+<thead>
+<tr>
+<th>Module</th>
+<th>Responsibility</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>engine.js</code></td>
+<td><code>Engine</code> — the pure game core. Owns the board, the 7-bag piece sequence, rotation (with simple wall kicks), gravity by level, line clears, and guideline scoring. No DOM, no input, no rendering.</td>
+</tr>
+<tr>
+<td><code>input.js</code></td>
+<td>The shared intent layer (keyboard / TV remote / gamepad), with game-specific auto-repeat (DAS) so a held ← / → / ↓ glides the piece.</td>
+</tr>
+<tr>
+<td><code>app.js</code></td>
+<td>Entry point. Wires the intent stream to the engine, runs the gravity loop, renders board / ghost / next / scoreboard, and manages the game states.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="the-intent-mapping">The intent mapping</h2>
+<p>The launcher <em>receives</em> intents and the controller <em>sends</em> them; this game is a
+<em>consumer</em> of the same six-word vocabulary, so nothing here is bound to raw
+keycodes or to a transport:</p>
+<table>
+<thead>
+<tr>
+<th>Intent</th>
+<th>In Tetris</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>left</code> / <code>right</code></td>
+<td>Move the piece (auto-repeats while held)</td>
+</tr>
+<tr>
+<td><code>up</code></td>
+<td>Rotate clockwise</td>
+</tr>
+<tr>
+<td><code>down</code></td>
+<td>Soft drop (auto-repeats while held)</td>
+</tr>
+<tr>
+<td><code>enter</code></td>
+<td>Hard drop · start · resume</td>
+</tr>
+<tr>
+<td><code>back</code></td>
+<td>Pause · return</td>
+</tr>
+</tbody>
+</table>
+<pre><code> key / remote / pad ─▶ input.js (intent) ─▶ app.js ─▶ Engine.move / rotate / drop
+                                                          │
+                                                          ▼
+                                              canvas render (board + next)
+</code></pre>
+<p>Because input arrives as intents, a phone <code>game-controller</code> relaying the same
+vocabulary over a real transport could drive the game later with no change here.</p>
+<h2 id="the-engine">The engine</h2>
+<ul>
+<li><strong>Pieces</strong> — the seven tetrominoes, each authored once in spawn orientation;
+the other three rotations are derived by rotating the 4×4 cell box clockwise.</li>
+<li><strong>Randomiser</strong> — a 7-bag: every piece appears once per bag before any repeats.</li>
+<li><strong>Rotation</strong> — tries in place, then nudges ±1 / ±2 cells (a lightweight wall
+kick) so rotations near a wall still succeed.</li>
+<li><strong>Gravity</strong> — a per-level drop interval; <code>app.js</code> accumulates elapsed time and
+steps the piece down each interval. Soft drop and hard drop award points.</li>
+<li><strong>Line clears &amp; levelling</strong> — full rows are removed and scored
+(100 / 300 / 500 / 800 × level); the level rises every 10 lines and gravity
+speeds up with it.</li>
+</ul>
+<p>The core emits <code>change</code>, <code>lines</code>, and <code>gameover</code> events; the shell re-renders on
+<code>change</code> and shows the overlay on <code>gameover</code>.</p>
+<h2 id="design-intents-to-preserve">Design intents to preserve</h2>
+<ul>
+<li><strong>Zero-build, zero-backend</strong> — same ethos as the launcher and controller.</li>
+<li><strong>Pure engine</strong> — keep game rules in <code>engine.js</code>, free of DOM/input, so they
+stay headless-testable.</li>
+<li><strong>One intent vocabulary</strong> shared across the org; route all controls through
+the intent layer, never bind the game to raw keycodes or a transport.</li>
+</ul>
+<h2 id="deploy">Deploy</h2>
+<p>Same shared pipeline and CI-only cache-bust stamp as the other apps — see
+<a href="../../way-of-working.html">Way of working</a>.</p>
+
+</article>
+
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>SPACE CONSOLE // MISSION CONTROL — telemetry nominal</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

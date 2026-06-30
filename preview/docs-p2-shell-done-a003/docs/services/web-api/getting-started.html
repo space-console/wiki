@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Getting started — web-api | Space Console &#183; Mission Control </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Getting started — web-api | Space Console &#183; Mission Control ">
+      
+      
+      <link rel="icon" href="../../../favicon.ico">
+      <link rel="stylesheet" href="../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../../../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/space-console/wiki/blob/docs/p2-shell-done/docs/services/web-api/getting-started.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../index.html">
+            <img id="logo" class="svg" src="../../../logo.svg" alt="SPACE CONSOLE">
+            SPACE CONSOLE
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="getting-started--web-api">Getting started — web-api</h1>
+
+<h2 id="prerequisites">Prerequisites</h2>
+<ul>
+<li>Node.js &gt;= 18.</li>
+</ul>
+<h2 id="run-locally">Run locally</h2>
+<pre><code class="lang-sh">git clone git@github_xhevops:space-console/web-api.git
+cd web-api
+npm install
+npm start        # ws://localhost:8080   (npm run dev for --watch reload)
+</code></pre>
+<p>Then run the TV and a phone and point them at the relay:</p>
+<pre><code class="lang-sh">cd game-launcher-web &amp;&amp; npm run dev   # http://localhost:5173 (the TV)
+cd game-controller   &amp;&amp; npm run dev   # http://localhost:5174 (the phone)
+</code></pre>
+<p>Open the launcher, read the room code, enter it on the controller — the
+controller's d-pad now drives the launcher menu over the peer connection.</p>
+<h2 id="signaling-url">Signaling URL</h2>
+<p>Both clients default their signaling target to <code>ws://&lt;page-hostname&gt;:8080</code>, so
+serving the apps from your laptop's LAN IP lets phones reach the relay
+automatically. Override per device with a query param:</p>
+<pre><code>http://&lt;laptop-ip&gt;:5174/?signal=ws://&lt;laptop-ip&gt;:8080
+</code></pre>
+<h2 id="useful-commands">Useful commands</h2>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>npm start</code></td>
+<td>Run the relay on :8080.</td>
+</tr>
+<tr>
+<td><code>npm run dev</code></td>
+<td>Same, with <code>node --watch</code> auto-reload.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="testing-the-handshake-on-one-machine">Testing the handshake on one machine</h2>
+<p>Two browser tabs/contexts on the same machine work, but Chrome hides host ICE
+candidates behind mDNS by default, which can block the loopback connection.
+Launch Chrome with <code>--disable-features=WebRtcHideLocalIpsWithMdns</code> for
+single-machine testing. On a real LAN (phone + TV on the same Wi-Fi) this isn't
+needed.</p>
+
+</article>
+
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>SPACE CONSOLE // MISSION CONTROL — telemetry nominal</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
